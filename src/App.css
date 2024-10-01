@@ -1,42 +1,95 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* Centers elements horizontally */
+  justify-content: center; /* Centers elements vertically */
+  height: 100vh;           /* Takes full viewport height */
+  width: 100vw;            /* Takes full viewport width */
+  position: absolute;      /* Ensures the container fills the screen */
+  top: 0;                  /* Position from the top */
+  left: 0;                 /* Position from the left */
+}
+
+.menu-container button {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;   /* Center images horizontally */
+  gap: 20px;                 /* Adds space between images */
+  margin: 20px 0;            /* Adds space above and below the image container */
+}
+
+.map-image {
+  width: 150px;     /* Set a fixed width */
+  height: 150px;    /* Set a fixed height */
+  object-fit: cover; /* Ensures the image retains its aspect ratio */
+  border: 2px solid #ccc; /* Default border */
+  cursor: pointer;  /* Changes cursor to pointer when hovering over images */
+  transition: transform 0.3s, border 0.3s; /* Adds a transition effect */
+  box-shadow: none; /* No shadow initially */
+}
+
+.map-image:hover {
+  transform: scale(1.1); /* Slightly enlarges the image on hover */
+}
+
+.selected {
+  border: 4px solid #4CAF50; /* Highlight the selected image with a green border */
+  box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5); /* Add a glowing green effect */
+  transform: scale(1.1); /* Slightly enlarge the selected image */
+}
+
+.game-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+.table-cell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.game-over {
+  text-align: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-over h1 {
+  color: red;
+  font-size: 48px;
+  animation: blink 1s infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Optional blink effect for "GAME OVER" */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-.card {
-  padding: 2em;
+.table-cell:hover {
+  background-color: #f0f0f0; /* Highlight cell on hover */
 }
 
-.read-the-docs {
-  color: #888;
+.gameplay-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
+
+
+
+
+
+
+
+
+
