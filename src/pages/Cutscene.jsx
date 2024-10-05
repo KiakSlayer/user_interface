@@ -1,16 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import '../App.css';  // Assuming the CSS file is already created
 
 const Cutscene = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate('/role');
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
 
   useEffect(() => {
     const handleBackNavigation = (event) => {
@@ -28,10 +21,20 @@ const Cutscene = () => {
 
   return (
     <div className="cutscene-container">
-      <h1>Cutscene Playing...</h1>
-      <button onClick={() => navigate('/role')}>skip</button>
+      <iframe
+        src="https://drive.google.com/file/d/1gZ7-qiJoiqmiCQbIIURuvFK36OXyDTHn/preview"
+        width="100%"
+        height="100%"
+        frameBorder="0"
+        allow="autoplay"
+        title="Cutscene"
+      />
+      <button className="skip-button" onClick={() => navigate('/role')}>Skip</button>
     </div>
   );
 };
 
 export default Cutscene;
+
+
+
