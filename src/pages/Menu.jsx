@@ -8,7 +8,7 @@ const Menu = () => {
   return (
     <div className="menu-container">
     <h1>Main Menu</h1>
-      <button onClick={() => navigate('/start')}>Start</button>
+      <button onClick={() => navigate('/start')}>PLAY GAME</button>
       <button onClick={() => navigate('/profile')}>Profile</button>
       <button onClick={() => navigate('/setting')}>Setting</button>
     </div>
