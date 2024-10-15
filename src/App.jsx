@@ -5,6 +5,7 @@ import Start from "./pages/SelectMap.jsx";
 import Profile from "./pages/Profile.jsx";
 import Setting from "./pages/Setting.jsx";
 import GamePlay from "./pages/Gameplay.jsx";
+import GameBoard from "./pages/GameBoard.jsx";
 import Cutscene from "./pages/Cutscene.jsx";
 import Role from "./pages/RoleAssignment.jsx";
 
