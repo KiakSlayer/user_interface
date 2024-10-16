@@ -88,18 +88,18 @@ function Profile() {
       </div>
       <div className="profile-right">
         <div className="enter-info-name">
-          <label>Name:</label>
+          <label className="selection-display-text">Name:</label>
           <input className="enter-name-form" placeholder="Enter name" value={playerName} onChange={handlePlayerNameChange} />
         </div>
         <div className="enter-info">
           
           <div className="side-by-side-button">
-          <label>Sex:</label>
+          <label className="selection-display-text">Sex:</label>
           <button className="side-by-side-left-button" onClick={handleBoyCharacter}>Boy</button>
           <button  className="side-by-side-right-button" onClick={handleGirlCharacter}>Girl</button>
         </div></div>
         <div className="enter-info">
-          <h2>Select Character</h2>
+          <h2 className="selection-display-text">Select Character</h2>
           <div className="image-options">
             {imageOptions.map((url, index) => (
               <img

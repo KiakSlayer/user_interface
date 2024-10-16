@@ -87,7 +87,13 @@
   height: 100vh;
 }
 
+.selection-display-text{
+  font-weight: 400;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
+}
 
 
 
