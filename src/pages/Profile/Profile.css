@@ -1,0 +1,59 @@
+.profile-title{
+    text-align: left;
+    padding: 20;
+}
+  
+  .profile-container {
+    display: flex;
+    height: 100vh; /* Full height */
+  }
+  
+  .profile-left {
+    flex: 1; /* Takes half of the width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .profile-right {
+    flex: 2; /* Takes half of the width */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content */
+  }
+  
+  .transparent-container {
+    width: 100%; /* Make the container responsive */
+    max-width: 150px; /* Set a maximum width for the profile image container */
+    height: auto; /* Allow height to adjust automatically */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+    border: 2px solid rgba(0, 123, 255, 0.5); /* Semi-transparent border */
+    border-radius: 2px; /* Rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px); /* Optional: Add blur effect to the background */
+    margin-bottom: 20px; /* Space below the profile picture container */
+  }
+  
+  .profile-img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 20px; /* Makes the image circular */
+  }
+  
+  .image-options {
+    display: flex;
+    justify-content: space-around; /* Space out options */
+    width: 100%; /* Full width for options */
+    margin-top: 20px; /* Space above options */
+  }
+  
+  .option-img {
+    width: 50px; /* Fixed size for option images */
+    height: 50px; /* Fixed size for*/
+
+  }
