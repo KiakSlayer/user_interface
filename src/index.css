@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: cell;
 }
 
 a {
@@ -38,7 +39,7 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 40px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -48,11 +49,18 @@ button {
   color: black;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 2px;
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(0, 0, 0, 0.404);
   cursor: cell;
+  outline-style: solid;
+  transform: scale(1.1);
+  
+  ; /* Change border color on hover */
+  
+  
 }
 
 button:focus,
@@ -64,6 +72,7 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+    outline-style: solid;
   }
 
   a:hover {
@@ -77,7 +86,7 @@ button:focus-visible {
 
 .enter-info{
   background-color: #f9f9f9;
-  border-radius: 8px;
+  border-radius: 40px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -85,9 +94,9 @@ button:focus-visible {
   font-family: inherit;
   background-color: #f3f5efe0;
   color: black;
-  cursor: pointer;
+  margin: 10px; 
   transition: border-color 0.25s;
-  margin-top: 50px;
+  margin-top: 10px;
 
 
 }
