@@ -1,16 +1,17 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Pixelify Sans';
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgb(19, 18, 18);
+  background-color: #F6AE2D;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: cell;
 }
 
 a {
@@ -18,8 +19,10 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
+  
 }
 
 body {
@@ -28,6 +31,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -36,19 +41,30 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 40px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #758E4F;
+  color: black;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 2px;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(0, 0, 0, 0.404);
+  cursor: cell;
+  outline-style: solid;
+  transform: scale(1.1);
+  
+  ; /* Change border color on hover */
+  
+  
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -58,11 +74,34 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+    outline-style: solid;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
 }
+
+.enter-info{
+  background-color: #f9f9f9;
+  border-radius: 40px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f3f5efe0;
+  color: black;
+  margin: 10px; 
+  transition: border-color 0.25s;
+  margin-top: 10px;
+
+
+}
+
+
+

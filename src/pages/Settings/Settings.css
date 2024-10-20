@@ -1,0 +1,66 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    
+    border-radius: 8px; /* Rounded corners for the container */
+    width: 300px;
+    
+  }
+  
+  .icon-container {
+    margin: 20px 0; /* Space above and below the icon */
+  }
+  
+  .circle {
+    width: 80px; /* Circle diameter */
+    height: 80px; /* Circle diameter */
+    background-color: rgb(29, 151, 76); /* Circle color */
+    border-radius: 50%; /* Makes it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sound-icon {
+    color: white; /* Icon color */
+    font-size: 36px; /* Adjust size as needed */
+  }
+  
+  .music-type {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    margin: 10px 0; /* Space above and below */
+    background-color: #f0f0f0; /* Light background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+ 
+  
+  .options-container {
+    display: flex;
+    flex-direction: column; /* Stack options vertically */
+    margin-top: 20px; /* Space above the options */
+    width: 70% /* Full width for options */
+    
+    
+  }
+  
+  .option {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-evenly; /* Space out label and buttons */
+    align-items: center; /* Center vertically */
+    margin: 10px 0; /* Space between options */
+    background-color: #f0f0f0; /* Light background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px;
+  }
+  
+  .button-group {
+    
+    gap: 10px; /* Space between buttons */
+    background-color: #f0f0f0; /* Light background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  

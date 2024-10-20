@@ -8,6 +8,8 @@
   position: absolute;      /* Ensures the container fills the screen */
   top: 0;                  /* Position from the top */
   left: 0;                 /* Position from the left */
+
+
 }
 
 .menu-container button {
@@ -18,7 +20,84 @@
   cursor: pointer;
 }
 
+.image-container {
+  display: flex;
+  justify-content: center;   /* Center images horizontally */
+  gap: 20px;                 /* Adds space between images */
+  margin: 20px 0;            /* Adds space above and below the image container */
+}
 
+.map-image {
+  width: 150px;     /* Set a fixed width */
+  height: 150px;    /* Set a fixed height */
+  object-fit: cover; /* Ensures the image retains its aspect ratio */
+  border: 2px solid #ccc; /* Default border */
+  cursor: pointer;  /* Changes cursor to pointer when hovering over images */
+  transition: transform 0.3s, border 0.3s; /* Adds a transition effect */
+  box-shadow: none; /* No shadow initially */
+}
+
+.map-image:hover {
+  transform: scale(1.1); /* Slightly enlarges the image on hover */
+}
+
+.selected {
+  border: 4px solid #4CAF50; /* Highlight the selected image with a green border */
+  box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5); /* Add a glowing green effect */
+  transform: scale(1.1); /* Slightly enlarge the selected image */
+}
+
+.game-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+.table-cell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000;
+  text-align: center;
+}
+
+.game-over {
+  text-align: center;
+}
+
+.game-over h1 {
+  color: red;
+  font-size: 48px;
+  animation: blink 1s infinite;
+}
+
+/* Optional blink effect for "GAME OVER" */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.table-cell:hover {
+  background-color: #f0f0f0; /* Highlight cell on hover */
+}
+
+.gameplay-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.selection-display-text{
+  font-weight: 400;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+.button-text{
+  padding: 2px ;
+}
 
 
 
