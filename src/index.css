@@ -14,6 +14,17 @@
   cursor: cell;
 }
 
+[data-theme='dark'] {
+  --text-color: #ffffff; /* Change text color */
+  --background-color: #1a1a1a; /* Change background color */
+  --link-color: #80bfff; /* Change link color */
+  --button-bg: #2d2d2d; /* Button background color */
+  --button-bg-hover: #444; /* Button hover color */
+  --button-bg-active: #333; /* Button active color */
+  --button-text-color: white; /* Button text color */
+}
+
+/* Link styling */
 a {
   font-weight: 500;
   color: #646cff;

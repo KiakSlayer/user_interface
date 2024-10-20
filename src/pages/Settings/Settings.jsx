@@ -3,11 +3,13 @@ import React, { useEffect, useState, useContext } from "react";
 import { FaVolumeUp, FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Import sound icon and arrows
 import "./Settings.css";
 import { AudioContext } from '../../context/AudioContext';
+import ThemeToggle from '../../components/ThemeToggle';
 
+import { useNavigate } from "react-router-dom";
 
 function Setting() {
   const { isPlaying, toggleAudio } = useContext(AudioContext);
-  
+  const navigate = useNavigate(); // Initialize the navigate function!!
   return (
     <div className="settings-container">
       <h1>Settings</h1>
@@ -35,6 +37,13 @@ function Setting() {
             <button className="side-by-side-button"><label className="button-text">On</label></button>
 
           </div>
+        </div>
+
+        <div>
+          <ThemeToggle></ThemeToggle>
+        </div>
+        <div>
+          <button onClick={()=> navigate('/')}>Main Menu</button>
         </div>
       </div>
     </div>
