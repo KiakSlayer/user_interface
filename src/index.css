@@ -1,41 +1,64 @@
 :root {
-  font-family: 'Pixelify Sans';
-  line-height: 1.5;
+  /* Font settings */
+  --font-family: 'Pixelify Sans';
+  --font-size: 1em;
+  --font-weight: 500;
+  --line-height: 1.5;
+
+  /* Color scheme */
+  --text-color: rgb(19, 18, 18);
+  --background-color: #F6AE2D;
+  --link-color: #646cff;
+  --link-hover-color: #535bf2;
+  --button-bg: #758E4F;
+  --button-bg-hover: #6b8342;
+  --button-bg-active: #556832;
+  --button-text-color: black;
+  --button-border-color-hover: rgba(0, 0, 0, 0.404);
+
+  /* Light mode */
+  --light-text-color: #213547;
+  --light-bg-color: #ffffff;
+  --light-link-hover-color: #747bff;
+  --light-button-bg: #f9f9f9;
+
+  /* Transition settings */
+  --transition-speed: 0.3s;
+  --button-scale-hover: 1.05;
+  --button-scale-active: 0.98;
+
+  /* Cursor settings */
+  --cursor: cell;
+
+  font-family: var(--font-family);
+  line-height: var(--line-height);
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgb(19, 18, 18);
-  background-color: #F6AE2D;
+  color: var(--text-color);
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: cell;
-}
 
-[data-theme='dark'] {
-  --text-color: #ffffff; /* Change text color */
-  --background-color: #1a1a1a; /* Change background color */
-  --link-color: #80bfff; /* Change link color */
-  --button-bg: #2d2d2d; /* Button background color */
-  --button-bg-hover: #444; /* Button hover color */
-  --button-bg-active: #333; /* Button active color */
-  --button-text-color: white; /* Button text color */
+  cursor: var(--cursor);
 }
 
 /* Link styling */
 a {
-  font-weight: 500;
-  color: #646cff;
+  font-weight: var(--font-weight);
+  color: var(--link-color);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
-  
+  color: var(--link-hover-color);
+  transition: color var(--transition-speed) ease;
 }
 
+/* Body layout */
 body {
   margin: 0;
   display: flex;
@@ -44,36 +67,42 @@ body {
   min-height: 100vh;
   justify-content: center;
   align-items: center;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
+/* Heading styling */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* Button styling using variables */
 button {
   border-radius: 40px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
   font-family: inherit;
-  background-color: #758E4F;
-  color: black;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  cursor: var(--cursor);
+
+  /* Transition for hover and click states */
+  transition: all var(--transition-speed) ease;
   margin-top: 2px;
 }
 
 button:hover {
-  border-color: rgba(0, 0, 0, 0.404);
+  border-color: var(--button-border-color-hover);
+  transform: scale(var(--button-scale-hover));
+  background-color: var(--button-bg-hover);
   cursor: cell;
-  outline-style: solid;
-  transform: scale(1.1);
-  
-  ; /* Change border color on hover */
-  
-  
+}
+
+button:active {
+  transform: scale(var(--button-scale-active));
+  background-color: var(--button-bg-active);
 }
 
 button:focus,
@@ -81,38 +110,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Dark mode and light mode styling */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-    outline-style: solid;
+    --text-color: var(--light-text-color);
+    --background-color: var(--light-bg-color);
   }
 
   a:hover {
-    color: #747bff;
+    color: var(--light-link-hover-color);
   }
 
   button {
-    background-color: #f9f9f9;
+    background-color: var(--light-button-bg);
   }
 }
-
-.enter-info{
-  background-color: #f9f9f9;
-  border-radius: 40px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #f3f5efe0;
-  color: black;
-  margin: 10px; 
-  transition: border-color 0.25s;
-  margin-top: 10px;
-
-
-}
-
-
-

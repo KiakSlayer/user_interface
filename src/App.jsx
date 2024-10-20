@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Menu from "./pages/Menu.jsx";
-import Start from "./pages/SelectMap.jsx";
+import Menu from "./pages/MainMenu/Menu.jsx";
+import Start from "./pages/MapSelection/SelectMap.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import Setting from "./pages/Settings/Settings.jsx";
 
