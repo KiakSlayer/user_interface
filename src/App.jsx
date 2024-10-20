@@ -7,6 +7,7 @@ import Setting from "./pages/Settings/Settings.jsx";
 import GamePlay from "./pages/Gameplay.jsx";
 import Cutscene from "./pages/Cutscene.jsx";
 import Role from "./pages/RoleAssignment.jsx";
+import sound from "./assets/forest_sounds.mp3"
 
 const App = () => {
   return (
