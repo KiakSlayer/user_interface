@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Menu from "./pages/Menu.jsx";
-import Start from "./pages/SelectMap.jsx";
+import Menu from "./pages/MainMenu/Menu.jsx";
+import Start from "./pages/MapSelection/SelectMap.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import Setting from "./pages/Settings/Settings.jsx";
-import GamePlay from "./pages/Gameplay.jsx";
-import Cutscene from "./pages/Cutscene.jsx";
-import Role from "./pages/RoleAssignment.jsx";
+import GamePlay from "./pages/GamePlay/Gameplay.jsx";
+import Cutscene from "./pages/CutScene/Cutscene.jsx";
+import Role from "./pages/RoleAssignment/RoleAssignment.jsx";
 import sound from "./assets/forest_sounds.mp3"
 
 const App = () => {
