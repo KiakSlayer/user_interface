@@ -12,10 +12,10 @@ function Profile() {
   const girlImages = ["src/assets/dora_explorer_show.jpg", "src/assets/dora_explorer_show.jpg", "src/assets/dora_explorer_show.jpg"];
   const boyImages = ["src/assets/Diego.jpg", "src/assets/Diego.jpg", "src/assets/Diego.jpg"];
 
-  let navigate=useNavigate();
+  let navigate = useNavigate();
 
-  const routeChange= () => {
-    let path='/start';
+  const routeChange = () => {
+    let path = '/start';
     navigate(path);
 
   }
@@ -60,9 +60,9 @@ function Profile() {
     localStorage.setItem("playerName", playerName);
     localStorage.setItem("profilePicture", profilePicture);
     alert("Profile saved successfully");
-        
 
-    
+
+
 
   };
 
@@ -92,12 +92,12 @@ function Profile() {
           <input className="enter-name-form" placeholder="Enter name" value={playerName} onChange={handlePlayerNameChange} />
         </div>
         <div className="enter-info">
-          
+
           <div className="side-by-side-button">
-          <label className="selection-display-text">Sex:</label>
-          <button className="side-by-side-left-button" onClick={handleBoyCharacter}>Boy</button>
-          <button  className="side-by-side-right-button" onClick={handleGirlCharacter}>Girl</button>
-        </div></div>
+            <label className="selection-display-text">Sex:</label>
+            <button className="side-by-side-left-button" onClick={handleBoyCharacter}>Boy</button>
+            <button className="side-by-side-right-button" onClick={handleGirlCharacter}>Girl</button>
+          </div></div>
         <div className="enter-info">
           <h2 className="selection-display-text">Select Character</h2>
           <div className="image-options">
@@ -114,7 +114,7 @@ function Profile() {
         </div>
         <div className="side-by-side-button">
           <button className="side-by-side-left-button" onClick={handleSubmit}>Submit</button>
-          <button className="side-by-side-right-button" onClick={()=> navigate('/')}>Main Menu</button>
+          <button className="side-by-side-right-button" onClick={() => navigate('/')}>Main Menu</button>
         </div>
       </div>
     </div>
