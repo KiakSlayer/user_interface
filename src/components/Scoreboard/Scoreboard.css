@@ -1,0 +1,26 @@
+.scoreboard {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .scoreboard h3 {
+    color: #495057;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .scoreboard-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  
+  .score-value {
+    font-weight: bold;
+    color: #333;
+  }
+  
