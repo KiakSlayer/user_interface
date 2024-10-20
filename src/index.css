@@ -14,8 +14,6 @@
   cursor: cell;
 }
 
-<<<<<<< Updated upstream
-=======
 [data-theme='dark'] {
   --text-color: #ffffff; /* Change text color */
   --background-color: #1a1a1a; /* Change background color */
@@ -27,7 +25,6 @@
 }
 
 /* Link styling */
->>>>>>> Stashed changes
 a {
   font-weight: 500;
   color: #646cff;
