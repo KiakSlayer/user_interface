@@ -1,0 +1,31 @@
+/* App.css or Lobby.css */
+
+.lobby-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--background-color); /* Ensure this matches your theme */
+  }
+  
+  .lobby-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .lobby-container button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .lobby-container button:hover {
+    background-color: var(--link-color); /* Lighter tone on hover */
+  }
+  

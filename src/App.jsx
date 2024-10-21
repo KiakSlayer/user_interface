@@ -12,6 +12,7 @@ import GamePlay from "./pages/GamePlay/Gameplay.jsx";
 // import sound from "./assets/forest_sounds.mp3"
 import './index.css';
 import './App.css';
+import Lobby from "./pages/Lobby/Lobby.jsx"
 
 
 
@@ -23,7 +24,8 @@ const App = () => {
         <Route path="/" element={<Menu />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />
-        
+        {/* Route for Lobby */}
+        <Route path="/lobby" element={<Lobby />} />
         {/* Route for the GamePlay page at the "/start" path */}
         <Route path="/start" element={<GamePlay />} />
         
