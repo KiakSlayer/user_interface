@@ -1,66 +1,115 @@
+/* Container for settings */
 .settings-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    
-    border-radius: 8px; /* Rounded corners for the container */
-    width: 300px;
-    
-  }
-  
-  .icon-container {
-    margin: 20px 0; /* Space above and below the icon */
-  }
-  
-  .circle {
-    width: 80px; /* Circle diameter */
-    height: 80px; /* Circle diameter */
-    background-color: rgb(29, 151, 76); /* Circle color */
-    border-radius: 50%; /* Makes it a circle */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .sound-icon {
-    color: white; /* Icon color */
-    font-size: 36px; /* Adjust size as needed */
-  }
-  
-  .music-type {
-    display: flex;
-    align-items: center; /* Center align items vertically */
-    margin: 10px 0; /* Space above and below */
-    background-color: #f0f0f0; /* Light background for contrast */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
- 
-  
-  .options-container {
-    display: flex;
-    flex-direction: column; /* Stack options vertically */
-    margin-top: 20px; /* Space above the options */
-    width: 70% /* Full width for options */
-    
-    
-  }
-  
-  .option {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-evenly; /* Space out label and buttons */
-    align-items: center; /* Center vertically */
-    margin: 10px 0; /* Space between options */
-    background-color: #f0f0f0; /* Light background for contrast */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 10px;
-  }
-  
-  .button-group {
-    
-    gap: 10px; /* Space between buttons */
-    background-color: #f0f0f0; /* Light background for contrast */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--background-color); /* Ensure this changes with theme */
+  color: var(--text-color); /* Ensure this changes with theme */
+  height: 100vh; /* Full screen height */
+  box-sizing: border-box;
+}
+
+/* Settings title */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Circle around the icon */
+.icon-container {
+  margin-bottom: 2rem;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: var(--button-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-icon {
+  color: var(--button-text-color);
+  font-size: 2.5rem;
+}
+
+/* Options container */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Add space between options */
+  width: 100%;
+  max-width: 400px; /* Ensure a nice centered alignment */
+  padding: 20px;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selection-display-text {
+  font-size: 1.2rem;
+  color: var(--text-color); /* Theme-based color */
+}
+
+/* Button styles */
+.button-group {
+  display: flex;
+}
+
+.side-by-side-button {
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.side-by-side-button:hover {
+  background-color: var(--link-color); /* Lighter color on hover */
+}
+
+.button-group label.button-text {
+  font-size: 1rem;
+}
+
+.theme-toggle-button {
+  padding: 10px 20px;
+  margin-top: 1rem;
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+  background-color: var(--link-color); /* Change to lighter tone on hover */
+}
+
+/* Main menu button */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--link-color);
+}
