@@ -1,13 +1,16 @@
-// src/components/ThemeToggle.jsx
-import React from 'react';
-import { useTheme } from '../context/ThemeContext';
+import React, { useState } from 'react';
 
 const ThemeToggle = () => {
-  const { toggleTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle('dark-mode');
+  };
 
   return (
-    <button onClick={toggleTheme} className="theme-toggle">
-      Toggle Theme
+    <button onClick={toggleDarkMode}>
+      {isDarkMode ? 'Light Mode' : 'Dark Mode'}
     </button>
   );
 };
