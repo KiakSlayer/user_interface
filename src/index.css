@@ -8,8 +8,8 @@
   /* Color scheme */
   --text-color: rgb(19, 18, 18);
   --background-color: #F6AE2D;
-  --link-color: #646cff;
-  --link-hover-color: #535bf2;
+  --link-color: #56d13d;
+  --link-hover-color: #53f288;
   --button-bg: #758E4F;
   --button-bg-hover: #6b8342;
   --button-bg-active: #556832;
@@ -45,6 +45,12 @@
 
   cursor: var(--cursor);
 }
+.dark-mode {
+  --text-color: #F6F6F6;
+  --background-color: #1a1a1a;
+  --button-bg: #333;
+  --button-text-color: white;
+}
 
 /* Link styling */
 a {
@@ -67,6 +73,9 @@ body {
   min-height: 100vh;
   justify-content: center;
   align-items: center;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
   transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
@@ -90,6 +99,7 @@ button {
 
   /* Transition for hover and click states */
   transition: all var(--transition-speed) ease;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
   margin-top: 2px;
 }
 
