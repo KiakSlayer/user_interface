@@ -9,7 +9,7 @@ const Menu = () => {
   return (
     <div className="menu-container">
     <h1>ESCAPE PLAN</h1>
-      <button id="start-button" onClick={() => navigate('/start')}>Start</button>
+      <button id="start-button" onClick={() => navigate('/lobby')}>Start</button>
       <button id="profile-button" onClick={() => navigate('/profile')}>Profile</button>
       <button id="settings" onClick={() => navigate('/setting')}>Settings</button>
     </div>

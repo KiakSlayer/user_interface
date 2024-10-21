@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import GameHeader from '../../components/GameHeader/GameHeader.jsx';
@@ -7,18 +7,18 @@ import Scoreboard from '../../components/Scoreboard/Scoreboard.jsx';
 
 const GamePlay = () => {
   const navigate = useNavigate();
-  const role = 'thief'; 
+  const role = 'thief';
   const [timeLeft, setTimeLeft] = useState(60); // 3-minute overall game timer
   const [gameOverMessage, setGameOverMessage] = useState(null);  // State for game over message
   const [grid, setGrid] = useState([]);
   const [farmerPosition, setFarmerPosition] = useState(null);
   const [thiefPosition, setThiefPosition] = useState(null);
-  const [turn, setTurn] = useState(null); 
+  const [turn, setTurn] = useState(null);
   const [turnTimeLeft, setTurnTimeLeft] = useState(10); // 10-second turn timer
   const [scores, setScores] = useState({ farmer: 0, thief: 0 }); // Score tracking
   const thiefImage = import.meta.env.VITE_THIEF_IMAGE;
   const isFirstRender = useRef(true);
-
+  const [playerName, setPlayerName] = useState('');
   let gameWon = false; // Prevent multiple win triggers
 
   useEffect(() => {
@@ -29,21 +29,21 @@ const GamePlay = () => {
 
     // Cleanup function to reset the game state when the component unmounts
     return async () => {
-        // If this is the first render, skip the cleanup
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-        } else {
-            try {
-                // Call the backend API to reset the game state
-                await axios.post(`${import.meta.env.VITE_SERVER_URL}/games/reset-game`);
-                // Log a message when the player exits the gameplay page
-                console.log("Exiting the game. Game state reset.");
-            } catch (error) {
-                console.error("Failed to reset game state on exit:", error);
-            }
+      // If this is the first render, skip the cleanup
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+      } else {
+        try {
+          // Call the backend API to reset the game state
+          await axios.post(`${import.meta.env.VITE_SERVER_URL}/games/reset-game`);
+          // Log a message when the player exits the gameplay page
+          console.log("Exiting the game. Game state reset.");
+        } catch (error) {
+          console.error("Failed to reset game state on exit:", error);
         }
+      }
     };
-}, []);
+  }, []);
 
 
   const startGame = async () => {
@@ -65,26 +65,26 @@ const GamePlay = () => {
       const gameTimer = setInterval(() => {
         setTimeLeft(prevTime => prevTime - 1);
       }, 1000);
-  
+
       return () => clearInterval(gameTimer);
     } else {
       handleGameOver(); // End the game when the timer runs out
     }
   }, [timeLeft]);
-  
 
-// Handle the turn timer (turnTimeLeft)
-useEffect(() => {
-  if (turnTimeLeft > 0) {
+
+  // Handle the turn timer (turnTimeLeft)
+  useEffect(() => {
+    if (turnTimeLeft > 0) {
       const turnTimer = setInterval(() => {
-          setTurnTimeLeft(prevTime => prevTime - 1);
+        setTurnTimeLeft(prevTime => prevTime - 1);
       }, 1000);
 
       return () => clearInterval(turnTimer);
-  } else {
+    } else {
       switchTurns();  // Switch turns when the timer runs out
-  }
-}, [turnTimeLeft]);
+    }
+  }, [turnTimeLeft]);
 
 
   // Reset the game state after the overall game timer ends
@@ -98,15 +98,15 @@ useEffect(() => {
 
   const switchTurns = async () => {
     try {
-        const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/games/switch-turn`);
-        const updatedGameState = response.data;
+      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/games/switch-turn`);
+      const updatedGameState = response.data;
 
-        setTurn(updatedGameState.currentTurn); 
-        setTurnTimeLeft(10); // Reset the turn timer to 10 seconds after the turn switches
+      setTurn(updatedGameState.currentTurn);
+      setTurnTimeLeft(10); // Reset the turn timer to 10 seconds after the turn switches
     } catch (error) {
-        console.error("Error switching turn:", error);
+      console.error("Error switching turn:", error);
     }
-};
+  };
 
 
   // Handle player movement
@@ -115,66 +115,66 @@ useEffect(() => {
     const handleKeyPress = async (e) => {
       if (moveInProgress) return; // Prevent multiple moves at the same time
       moveInProgress = true;
-  
+
       if (turn !== role) {
-          console.log(`It's the ${turn}'s turn. You (${role}) cannot move.`);
+        console.log(`It's the ${turn}'s turn. You (${role}) cannot move.`);
+        moveInProgress = false;
+        return;
+      }
+
+      let currentPosition = role === "farmer" ? { ...farmerPosition } : { ...thiefPosition };
+      let newPosition = { ...currentPosition }; // Create a copy to calculate new position
+
+      switch (e.key) {
+        case "ArrowUp":
+          if (newPosition.row > 0) newPosition.row -= 1;
+          break;
+        case "ArrowDown":
+          if (newPosition.row < grid.length - 1) newPosition.row += 1;
+          break;
+        case "ArrowLeft":
+          if (newPosition.col > 0) newPosition.col -= 1;
+          break;
+        case "ArrowRight":
+          if (newPosition.col < grid[0].length - 1) newPosition.col += 1;
+          break;
+        default:
           moveInProgress = false;
           return;
       }
-  
-      let currentPosition = role === "farmer" ? { ...farmerPosition } : { ...thiefPosition };
-      let newPosition = { ...currentPosition }; // Create a copy to calculate new position
-  
-      switch (e.key) {
-          case "ArrowUp":
-              if (newPosition.row > 0) newPosition.row -= 1;
-              break;
-          case "ArrowDown":
-              if (newPosition.row < grid.length - 1) newPosition.row += 1;
-              break;
-          case "ArrowLeft":
-              if (newPosition.col > 0) newPosition.col -= 1;
-              break;
-          case "ArrowRight":
-              if (newPosition.col < grid[0].length - 1) newPosition.col += 1;
-              break;
-          default:
-              moveInProgress = false;
-              return;
-      }
-  
+
       // Check if the move is valid (if the new position is different from the current one)
       if (newPosition.row === currentPosition.row && newPosition.col === currentPosition.col) {
-          console.log("Invalid move: outside the grid boundaries.");
-          moveInProgress = false;
-          return; // Exit if no valid move
+        console.log("Invalid move: outside the grid boundaries.");
+        moveInProgress = false;
+        return; // Exit if no valid move
       }
-  
+
       try {
-          const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/games/move`, {
-              role,
-              newPosition
-          });
-  
-          const updatedGameState = response.data;
-  
-          setGrid(updatedGameState.grid.blocks);
-          setFarmerPosition(updatedGameState.grid.farmerPosition);
-          setThiefPosition(updatedGameState.grid.thiefPosition);
-          setTurn(updatedGameState.currentTurn);
-  
-          // Reset the turn timer after a valid move
-          setTurnTimeLeft(10);  // Reset to 10 seconds after each move
-  
-          checkWinConditions(newPosition);
-  
+        const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/games/move`, {
+          role,
+          newPosition
+        });
+
+        const updatedGameState = response.data;
+
+        setGrid(updatedGameState.grid.blocks);
+        setFarmerPosition(updatedGameState.grid.farmerPosition);
+        setThiefPosition(updatedGameState.grid.thiefPosition);
+        setTurn(updatedGameState.currentTurn);
+
+        // Reset the turn timer after a valid move
+        setTurnTimeLeft(10);  // Reset to 10 seconds after each move
+
+        checkWinConditions(newPosition);
+
       } catch (error) {
-          console.error("Error processing move:", error.response ? error.response.data : error.message);
+        console.error("Error processing move:", error.response ? error.response.data : error.message);
       } finally {
-          moveInProgress = false;
+        moveInProgress = false;
       }
-  };
-  
+    };
+
 
     window.addEventListener("keydown", handleKeyPress);
 
@@ -187,36 +187,36 @@ useEffect(() => {
     if (gameWon) return; // Prevent multiple triggers
 
     if (turn === "thief") {
-        // Thief's turn win conditions
-        if (currentPosition.row === farmerPosition.row && currentPosition.col === farmerPosition.col) {
-            gameWon = true;
-            alert(`Farmer catches the thief! Farmer wins! \nCurrent Scores:\nFarmer: ${scores.farmer + 1}, Thief: ${scores.thief}`);
-            await updateScore('farmer'); // Farmer wins and should start the next game
-        } else if (grid[currentPosition.row][currentPosition.col] === 'tunnel') {
-            gameWon = true;
-            setThiefPosition(currentPosition);
-            alert(`Thief reaches the tunnel! Thief wins! \nCurrent Scores:\nFarmer: ${scores.farmer}, Thief: ${scores.thief + 1}`);
-            await updateScore('thief'); // Thief wins and should start the next game
-        }
+      // Thief's turn win conditions
+      if (currentPosition.row === farmerPosition.row && currentPosition.col === farmerPosition.col) {
+        gameWon = true;
+        alert(`Farmer catches the thief! Farmer wins! \nCurrent Scores:\nFarmer: ${scores.farmer + 1}, Thief: ${scores.thief}`);
+        await updateScore('farmer'); // Farmer wins and should start the next game
+      } else if (grid[currentPosition.row][currentPosition.col] === 'tunnel') {
+        gameWon = true;
+        setThiefPosition(currentPosition);
+        alert(`Thief reaches the tunnel! Thief wins! \nCurrent Scores:\nFarmer: ${scores.farmer}, Thief: ${scores.thief + 1}`);
+        await updateScore('thief'); // Thief wins and should start the next game
+      }
     } else if (turn === "farmer") {
-        // Farmer's turn win condition (catching the thief)
-        if (currentPosition.row === thiefPosition.row && currentPosition.col === thiefPosition.col) {
-            gameWon = true;
-            alert(`Farmer catches the thief! Farmer wins! \nCurrent Scores:\nFarmer: ${scores.farmer + 1}, Thief: ${scores.thief}`);
-            await updateScore('farmer'); // Farmer wins and should start the next game
-        }
+      // Farmer's turn win condition (catching the thief)
+      if (currentPosition.row === thiefPosition.row && currentPosition.col === thiefPosition.col) {
+        gameWon = true;
+        alert(`Farmer catches the thief! Farmer wins! \nCurrent Scores:\nFarmer: ${scores.farmer + 1}, Thief: ${scores.thief}`);
+        await updateScore('farmer'); // Farmer wins and should start the next game
+      }
     }
-};
+  };
 
 
-const updateScore = async (winner) => {
-  try {
+  const updateScore = async (winner) => {
+    try {
       await axios.put(`${import.meta.env.VITE_SERVER_URL}/games/update-score`, { winner });
       const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/games/game-state`);
 
       setScores({
-          farmer: response.data.players[0].score,
-          thief: response.data.players[1].score,
+        farmer: response.data.players[0].score,
+        thief: response.data.players[1].score,
       });
 
       // Set the winner as the first player in the next game
@@ -224,13 +224,13 @@ const updateScore = async (winner) => {
 
       await startGame(); // Restart the game
       gameWon = false; // Reset flag
-  } catch (error) {
+    } catch (error) {
       console.error(`Error updating score for ${winner}:`, error);
-  }
-};
+    }
+  };
 
 
-const refreshGame = async () => {
+  const refreshGame = async () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/games/reset-game`);
       const resetGameData = response.data.gameData;
@@ -245,65 +245,83 @@ const refreshGame = async () => {
         thief: resetGameData.players[1].score,
       });
 
-      setTimeLeft(60); 
+      setTimeLeft(60);
       setTurnTimeLeft(10);
 
     } catch (error) {
       console.error("Error refreshing game:", error);
     }
-};
+  };
 
-const handleGameOver = () => {
-  let winner;
-  if (scores.farmer > scores.thief) {
-    winner = 'Farmer';
-  } else if (scores.thief > scores.farmer) {
-    winner = 'Thief';
-  } else {
-    winner = 'No one'; // In case of a tie
-  }
-
-  // Display the game over message with the current scores
-  setGameOverMessage(`Game Over, ${winner} wins!!!\nFarmer: ${scores.farmer}, Thief: ${scores.thief}`);
-
-  // Set a timeout for 5 seconds to display the message and then redirect
-  setTimeout(() => {
-    try {
-      // Redirect to the menu page
-      navigate('/');
-    } catch (error) {
-      console.error("Failed to navigate:", error);
+  const handleGameOver = () => {
+    let winner;
+    if (scores.farmer > scores.thief) {
+      winner = 'Farmer';
+    } else if (scores.thief > scores.farmer) {
+      winner = 'Thief';
+    } else {
+      winner = 'No one'; // In case of a tie
     }
-  }, 5000); // Wait for 5 seconds before redirecting
-};
 
+    // Display the game over message with the current scores
+    setGameOverMessage(`Game Over, ${winner} wins!!!\nFarmer: ${scores.farmer}, Thief: ${scores.thief}`);
+
+    // Set a timeout for 5 seconds to display the message and then redirect
+    setTimeout(() => {
+      try {
+        // Redirect to the menu page
+        navigate('/');
+      } catch (error) {
+        console.error("Failed to navigate:", error);
+      }
+    }, 5000); // Wait for 5 seconds before redirecting
+  };
+
+  useEffect(() => {
+    const fetchPlayerName = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/getName`); // Fetch player name
+        setPlayerName(response.data.name); // Set the player name in state
+      } catch (error) {
+        console.error("Error fetching player name:", error);
+      }
+    };
+
+    fetchPlayerName(); // Call the fetch function
+  }, []);
 
 
   return (
+    <>
+    <div className="player-name-display"><h2>Welcome {playerName}</h2>
+      </div>
     <div className="gameplay-container">
-      <GameHeader 
+      
+      <GameHeader
         role={role}
         timeLeft={timeLeft}
         turn={turn}
         turnTimeLeft={turnTimeLeft}
       />
-      
-      <GameBoard 
+
+      <GameBoard
         grid={grid}
         farmerPosition={farmerPosition}
         thiefPosition={thiefPosition}
         thiefImage={thiefImage}
       />
 
-      <Scoreboard 
+      <Scoreboard
         farmerScore={scores.farmer}
         thiefScore={scores.thief}
       />
 
       {gameOverMessage && <div className="game-over-message">{gameOverMessage}</div>}
+      <div>{playerName}</div>
 
       <button onClick={refreshGame}>Refresh Game</button>
     </div>
+    </>
   );
 };
 
