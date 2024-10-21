@@ -45,6 +45,29 @@ const GamePlay = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleBeforeUnload = async () => {
+      try {
+        await axios.post(`${import.meta.env.VITE_SERVER_URL}/games/reset-game`);
+        console.log("Game state reset due to exit or page refresh.");
+      } catch (error) {
+        console.error("Failed to reset game state on exit or refresh:", error);
+      }
+    };
+  
+    // Listen for beforeunload event (when the user refreshes or closes the tab)
+    window.addEventListener('beforeunload', handleBeforeUnload);
+  
+    return () => {
+      // Trigger API when the component unmounts (user navigates away or clicks back)
+      handleBeforeUnload();
+  
+      // Cleanup the event listener when the component unmounts
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+  
+
 
   const startGame = async () => {
     try {
@@ -86,15 +109,6 @@ const GamePlay = () => {
     }
   }, [turnTimeLeft]);
 
-
-  // Reset the game state after the overall game timer ends
-  const resetGameState = async () => {
-    try {
-      await refreshGame(); // Reset the game completely
-    } catch (error) {
-      console.error("Failed to reset game:", error);
-    }
-  };
 
   const switchTurns = async () => {
     try {
