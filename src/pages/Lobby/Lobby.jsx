@@ -10,7 +10,7 @@ const Lobby = () => {
     e.preventDefault();
     try {
       // Send the player name to the server
-      await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/setName`, { name: playerName });
+      await axios.post(`${import.meta.env.VITE_SERVER_URL}/users/setUser`, { name: playerName });
       // Navigate to the GamePlay page
       navigate('/start');
       console.log("Sent to server");
